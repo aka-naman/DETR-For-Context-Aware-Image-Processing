@@ -35,23 +35,23 @@ Data and artifacts:
    - Load final model from outputs/detr_finetuned_final.pt
 
 ## Workflow diagram (high level)
-Data -> Preprocess -> Train -> Save checkpoints -> Inspect/Eval -> Inference
 
-ASCII flowchart:
+```text
 weapon_detr/data/
-  |
-  v
+       |
+       v
 [merge / fix scripts]
-  |
-  v
+       |
+       v
 Merged annotations -> train_detr_final_win.py (training)
-  |
-  v
-Checkpoints -> outputs/
-  |
-  +--> inspect_detr_outputs.py (Inspect/Eval)
-  |
-  +--> infer_realtime.py / test_inference_image.py (Inference)
+       |
+       v
+   Checkpoints -> outputs/
+       |
+       +--> inspect_detr_outputs.py (Inspect/Eval)
+       |
+       +--> infer_realtime.py / test_inference_image.py (Inference)
+```
 
 ## Quick run examples
 - Train (example):
@@ -91,4 +91,5 @@ Recommended packages (example):
 If you want, I can:
 - create requirements.txt in the repo,
 - update README in-place,
+
 - or generate a simple troubleshooting checklist specific to errors you see.
