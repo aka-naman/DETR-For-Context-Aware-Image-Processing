@@ -72,7 +72,7 @@ Create a requirements.txt and install before running:
 ```powershell
 python -m pip install -r requirements.txt
 ```
-Recommended packages (example):
+Packages: 
 - torch, torchvision
 - numpy
 - opencv-python
@@ -82,14 +82,3 @@ Recommended packages (example):
 - pyyaml
 - tqdm
 
-## Notes & troubleshooting
-- Confirm which training script to run (train_detr_final_win.py vs any other training entrypoint). Update README if you add/remove scripts.
-- Ensure weapon_detr/phase1.yaml paths point to the merged dataset files and outputs folder.
-- For GPU training, verify CUDA and matching torch build.
-- If inference fails due to model mismatch, run check_weights.py to inspect checkpoint contents.
-
-If you want, I can:
-- create requirements.txt in the repo,
-- update README in-place,
-
-- or generate a simple troubleshooting checklist specific to errors you see.
