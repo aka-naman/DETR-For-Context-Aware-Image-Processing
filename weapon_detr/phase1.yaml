@@ -1,0 +1,85 @@
+project:
+  name: weapon_detr
+  description: >
+    End-to-end computer vision pipeline for real-time weapon detection
+    (knives + guns) using DETR (DEtection TRansformer).
+    Built for Windows with RTX 3050 optimization.
+
+environment:
+  os: Windows 10/11
+  python_version: 3.10+
+  gpu: NVIDIA RTX 3050
+  cuda: Installed and verified
+  venv: weapon_detr (active virtual environment)
+  key_libraries:
+    - torch
+    - torchvision
+    - scikit-learn
+    - json
+    - shutil
+    - os
+
+phase_progress:
+  phase_0: 
+    title: "Windows environment & GPU readiness"
+    status: "✅ Completed"
+    steps:
+      - Installed CUDA toolkit and compatible NVIDIA driver
+      - Verified GPU availability via `torch.cuda.is_available()`
+      - Created isolated Python virtual environment (weapon_detr)
+      - Installed core libraries: torch, torchvision, transformers, scikit-learn
+
+  phase_1:
+    title: "Data collection & COCO preparation"
+    status: "✅ Completed"
+    datasets:
+      - dataset_A: Knife dataset (Roboflow export)
+      - dataset_B: Gun dataset (Roboflow export)
+    actions:
+      - Merged both datasets into COCO format (knife + gun)
+      - Unified category schema:
+          categories:
+            - id: 1
+              name: "knife"
+            - id: 2
+              name: "gun"
+      - Ensured unique image_ids and annotation_ids
+      - Verified annotations.json correctness
+      - Copied and consolidated all images into single folder
+      - Created train/validation splits (80/20)
+      - Performed COCO integrity check (no missing images)
+    dataset_summary:
+      total_images: 313
+      total_annotations: 391
+      train_images: 250
+      val_images: 63
+      train_annotations: 307
+      val_annotations: 84
+    final_dataset_structure:
+      path: D:\PROJECT\weapon_detr\data\merged_dataset
+      contents:
+        - images/                # all combined .jpg/.png images
+        - annotations.json       # full merged dataset
+        - train.json             # 80% training split
+        - val.json               # 20% validation split
+
+next_phase:
+  phase_2:
+    title: "Fine-tuning DETR (optimized for RTX 3050)"
+    objective: >
+      Train a DETR transformer model on the merged knife + gun dataset,
+      tuned for limited VRAM (4–6 GB).
+    tasks:
+      - Create Hugging Face–compatible fine-tuning script
+      - Configure hyperparameters (batch_size, lr, epochs, optimizer)
+      - Enable real-time logging (TensorBoard/W&B optional)
+      - Save checkpoints and evaluate using val.json
+      - Prepare for inference phase (real-time camera loop)
+
+notes:
+  - All prior phases are verified and checkpointed successfully.
+  - Dataset integrity fully validated (no missing or duplicate entries).
+  - Next step will produce model weights (`detr_finetuned.pt`) for real-time inference.
+  - Recommended backup: copy `merged_dataset/` and this YAML to external storage.
+
+timestamp: "2025-11-12"
