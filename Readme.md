@@ -20,7 +20,6 @@ Data and artifacts:
    - Run merging / fix scripts in weapon_detr/data/ (fix_all_splits.py, fix_category_ids.py, etc.).
    - Confirm merged COCO-like files under weapon_detr/data/merged_dataset/.
 2. Configure
-   - Edit or verify settings in weapon_detr/phase1.yaml or pass arguments to the training script.
 3. Train
    - Start training with the training script, e.g.:
      - train_detr_final_win.py — main training CLI for Windows
@@ -81,4 +80,5 @@ Packages:
 - matplotlib
 - pyyaml
 - tqdm
+
 
